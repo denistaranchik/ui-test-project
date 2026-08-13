@@ -1,6 +1,9 @@
 package Page;
 
 import com.microsoft.playwright.Locator;
+import java.util.Random;
+import org.apache.commons.lang3.RandomStringUtils;
+
 
 public class RegistrationPage {
 
@@ -57,6 +60,15 @@ public class RegistrationPage {
     public RegistrationPage fillConfirmPasswordInput(String confirmPassword) {
         confirmPasswordInput.fill(confirmPassword);
         return this;
+    }
+
+    // Method for random mail generation
+
+    public String randomMailGenerator() {
+        Random random = new Random();
+        int randomEmailNumber = random.nextInt(1000000000);
+        String randomEmail = RandomStringUtils.secure().nextAlphabetic(5);
+        return "DZEN" + randomEmail + "+" + randomEmailNumber + "@fakemail.com";
     }
 }
 

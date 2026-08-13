@@ -1,8 +1,8 @@
 import Constant.Buttons;
 import Constant.Credentials;
 import Constant.UserData;
-import Page.Helper;
 import Page.HomePage;
+import Page.RegistrationPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,18 +11,18 @@ import static org.testng.Assert.assertEquals;
 public class RegistrationTest extends BaseLoginTest {
 
     HomePage homePage;
-    Helper helper;
+    RegistrationPage registrationPage;
 
     @BeforeMethod
     public void initPages() {
         homePage = new HomePage();
-        helper = new Helper();
+        registrationPage = new RegistrationPage();
     }
 
     @Test
     public void successfulRegistrationMaleTest() {
 
-        String generatedRandomEmail = helper.randomMailGenerator();
+        String generatedRandomEmail = registrationPage.randomMailGenerator();
 
         homePage.clickRegistrationButton()
                 .clickGenderMaleRadioButton()
@@ -41,7 +41,7 @@ public class RegistrationTest extends BaseLoginTest {
     @Test
     public void successfulRegistrationFemaleTest() {
 
-        String generatedRandomEmail = helper.randomMailGenerator();
+        String generatedRandomEmail = registrationPage.randomMailGenerator();
 
         homePage.clickRegistrationButton()
                 .clickGenderFemaleRadioButton()
