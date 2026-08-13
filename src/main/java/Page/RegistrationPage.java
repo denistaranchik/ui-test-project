@@ -61,14 +61,5 @@ public class RegistrationPage {
         confirmPasswordInput.fill(confirmPassword);
         return this;
     }
-
-    // Method for random mail generation
-
-    public String randomMailGenerator() {
-        Random random = new Random();
-        int randomEmailNumber = random.nextInt(1000000000);
-        String randomEmail = RandomStringUtils.secure().nextAlphabetic(5);
-        return "DZEN" + randomEmail + "+" + randomEmailNumber + "@fakemail.com";
-    }
 }
 
