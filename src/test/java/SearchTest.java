@@ -1,6 +1,5 @@
-import Page.BasePage;
+import Constant.Credentials;
 import Page.HomePage;
-import Page.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,32 +10,30 @@ public class SearchTest extends BaseLoginTest{
     private final String validSearchInput = "Book";
 
     HomePage homePage;
-    LoginPage loginPage;
-    BasePage basePage;
 
     @BeforeMethod
     public void initPages() {
         homePage = new HomePage();
-        loginPage = new LoginPage();
-        basePage = new BasePage();
     }
 
     @Test
     public void successfulSearchByUnauthorizedUserTest () {
-        homePage.fillSearchInput(validSearchInput);
-        homePage.clickSearchButton();
+
+        homePage.fillSearchInput(validSearchInput)
+                .clickSearchButton();
 
         assertTrue(homePage.isSortBySelectVisible());
     }
 
     @Test
     public void successfulSearchByAuthorizedUserTest () {
-        homePage.clickLoginButton();
-        loginPage.fillEmailInput(basePage.getValidEmail());
-        loginPage.fillPasswordInput(basePage.getValidPassword());
-        loginPage.clickLoginButton();
-        homePage.fillSearchInput(validSearchInput);
-        homePage.clickSearchButton();
+
+        homePage.clickLoginButton()
+                .fillEmailInput(Credentials.VALID_EMAIL.getCredentials())
+                .fillPasswordInput(Credentials.VALID_PASSWORD.getCredentials())
+                .clickLoginButton()
+                .fillSearchInput(validSearchInput)
+                .clickSearchButton();
 
         assertTrue(homePage.isSortBySelectVisible());
     }

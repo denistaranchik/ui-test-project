@@ -2,12 +2,13 @@ package Page;
 
 import com.microsoft.playwright.Locator;
 import java.util.Random;
+import org.apache.commons.lang3.RandomStringUtils;
+
 
 public class RegistrationPage {
 
-
     private final Locator genderMaleRadioButton = BasePage.page.locator("#gender-male");
-    private final Locator genderFemaleRadioButton = BasePage.page.locator("gender-female");
+    private final Locator genderFemaleRadioButton = BasePage.page.locator("#gender-female");
     private final Locator firstNameInput = BasePage.page.locator("#FirstName");
     private final Locator lastNameInput = BasePage.page.locator("#LastName");
     private final Locator emailInput = BasePage.page.locator("#Email");
@@ -19,66 +20,55 @@ public class RegistrationPage {
 
     // Click methods
 
-    public void clickGenderMaleRadioButton() {
+    public RegistrationPage clickGenderMaleRadioButton() {
         genderMaleRadioButton.click();
+        return this;
     }
 
-    public void clickGenderFemaleRadioButton() {
+    public RegistrationPage clickGenderFemaleRadioButton() {
         genderFemaleRadioButton.click();
+        return this;
     }
 
-    public void clickFirstNameInput() {
-        firstNameInput.click();
-    }
-
-    public void clickLastNameInput() {
-        lastNameInput.click();
-    }
-
-    public void clickEmailInput() {
-        emailInput.click();
-    }
-
-    public void passwordInput() {
-        passwordInput.click();
-    }
-
-    public void confirmPasswordInput() {
-        confirmPasswordInput.click();
-    }
-
-    public void clickRegistrationButton() {
+    public HomePage clickRegistrationButton() {
         registrationButton.click();
+        return new HomePage();
     }
 
     // Fill methods
 
-    public void fillFirstNameInput(String firstName) {
+    public RegistrationPage fillFirstNameInput(String firstName) {
         firstNameInput.fill(firstName);
+        return this;
     }
 
-    public void fillLastNameInput(String lastName) {
+    public RegistrationPage fillLastNameInput(String lastName) {
         lastNameInput.fill(lastName);
+        return this;
     }
 
-    public void fillEmailInput(String email) {
+    public RegistrationPage fillEmailInput(String email) {
         emailInput.fill(email);
+        return this;
     }
 
-    public void fillPasswordInput(String password) {
+    public RegistrationPage fillPasswordInput(String password) {
         passwordInput.fill(password);
+        return this;
     }
 
-    public void fillConfirmPasswordInput(String confirmPassword) {
+    public RegistrationPage fillConfirmPasswordInput(String confirmPassword) {
         confirmPasswordInput.fill(confirmPassword);
+        return this;
     }
 
     // Method for random mail generation
 
     public String randomMailGenerator() {
         Random random = new Random();
-        int number = random.nextInt(1000000000);
-        return "tva428870+" + number + "@gmail.com";
+        int randomEmailNumber = random.nextInt(1000000000);
+        String randomEmail = RandomStringUtils.secure().nextAlphabetic(5);
+        return "DZEN" + randomEmail + "+" + randomEmailNumber + "@fakemail.com";
     }
 }
 

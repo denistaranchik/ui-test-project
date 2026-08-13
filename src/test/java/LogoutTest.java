@@ -1,6 +1,6 @@
-import Page.BasePage;
+import Constant.Buttons;
+import Constant.Credentials;
 import Page.HomePage;
-import Page.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -8,29 +8,23 @@ import static org.testng.Assert.assertEquals;
 
 public class LogoutTest extends BaseLoginTest{
 
-    private final String registerButtonText = "Register";
-
     HomePage homePage;
-    LoginPage loginPage;
-    BasePage basePage;
 
     @BeforeMethod
     public void initPages() {
         homePage = new HomePage();
-        loginPage = new LoginPage();
-        basePage = new BasePage();
     }
 
     @Test
     public void successfulLogoutTest () {
 
-        homePage.clickLoginButton();
-        loginPage.fillEmailInput(basePage.getValidEmail());
-        loginPage.fillPasswordInput(basePage.getValidPassword());
-        loginPage.clickLoginButton();
-        homePage.clickLogoutButton();
+        homePage.clickLoginButton()
+            .fillEmailInput(Credentials.VALID_EMAIL.getCredentials())
+            .fillPasswordInput(Credentials.VALID_PASSWORD.getCredentials())
+            .clickLoginButton()
+            .clickLogoutButton();
 
         String customerInfoTextAbsenceAfterLogout = homePage.checkCustomerInfoTextAbsence();
-        assertEquals(customerInfoTextAbsenceAfterLogout, registerButtonText);
+        assertEquals(customerInfoTextAbsenceAfterLogout, Buttons.REGISTER.getButtonName());
     }
 }

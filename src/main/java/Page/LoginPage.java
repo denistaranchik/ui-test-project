@@ -10,28 +10,22 @@ public class LoginPage {
     private final Locator failureLoginError = BasePage.page.locator(".validation-summary-errors");
     private final Locator errorEmailInput = BasePage.page.locator(".field-validation-error");
 
-    // Click methods
-
-    public void clickEmailInput() {
-        emailInput.click();
-    }
-
-    public void passwordInput() {
-        passwordInput.click();
-    }
 
     // Fill methods
 
-    public void fillEmailInput(String value) {
-        emailInput.fill(value);
+    public LoginPage fillEmailInput(String value) {
+         emailInput.fill(value);
+         return this;
     }
 
-    public void fillPasswordInput(String value) {
+    public LoginPage fillPasswordInput(String value) {
         passwordInput.fill(value);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public HomePage clickLoginButton() {
         loginButton.click();
+        return new HomePage();
     }
 
     // Assertions

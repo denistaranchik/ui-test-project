@@ -14,12 +14,12 @@ public class ConfigReader {
                 .getResourceAsStream("config.properties")) {
 
             if (inputStream == null) {
-                throw new RuntimeException("config.properties не найден в resources");
+                throw new RuntimeException("config.properties was not found in resources");
             }
             properties.load(inputStream);
 
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось загрузить config.properties", e);
+            throw new RuntimeException("Can not download config.properties", e);
         }
     }
 

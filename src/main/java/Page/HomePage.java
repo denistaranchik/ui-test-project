@@ -9,38 +9,41 @@ public class HomePage{
     private final Locator logoutButton = BasePage.page.locator(".ico-logout");
     private final Locator searchInput = BasePage.page.locator("#small-searchterms");
     private final Locator searchButton = BasePage.page.locator(".button-1.search-box-button");
-    private final Locator customerInfo = BasePage.page.locator(".account")
-                             .filter(new Locator.FilterOptions().setHasText("@"));
-    private final Locator customerInfoAbsence = BasePage.page.locator(".ico-register")
-            .filter(new Locator.FilterOptions().setHasText("Register"));
+    private final Locator customerInfo = BasePage.page.locator("(//a[contains(@class, 'account')])[1]");
+    private final Locator customerInfoAbsence = BasePage.page.locator(".ico-register");
     private final Locator sortedByFieldSearchValidResult = BasePage.page.locator("#products-orderby");
 
     // Click methods
 
-    public void clickRegistrationButton() {
+    public RegistrationPage clickRegistrationButton() {
         registrationButton.click();
+        return new RegistrationPage();
     }
 
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
            loginButton.click();
+           return new LoginPage();
     }
 
-    public void clickLogoutButton() {
+    public HomePage clickLogoutButton() {
         logoutButton.click();
+        return this;
     }
 
     public void clickSearchInput() {
         searchInput.click();
     }
 
-    public void clickSearchButton() {
+    public HomePage clickSearchButton() {
         searchButton.click();
+        return this;
     }
 
     // Fill methods
 
-    public void fillSearchInput(String input) {
+    public HomePage fillSearchInput(String input) {
         searchInput.fill(input);
+        return this;
     }
 
     // Assertions
@@ -51,6 +54,14 @@ public class HomePage{
 
     public String checkCustomerInfoTextAbsence() {
         return customerInfoAbsence.innerText();
+    }
+
+    public String checkLogOutButtonPresence() {
+        return logoutButton.innerText();
+    }
+
+    public String checkLogInButtonPresence() {
+        return loginButton.innerText();
     }
 
     public boolean isSortBySelectVisible() {
