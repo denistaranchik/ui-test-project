@@ -24,7 +24,6 @@ public class LogoutTest extends BaseLoginTest{
             .clickLoginButton()
             .clickLogoutButton();
 
-        String customerInfoTextAbsenceAfterLogout = homePage.checkCustomerInfoTextAbsence();
-        assertEquals(customerInfoTextAbsenceAfterLogout, Buttons.REGISTER.getButtonName());
+        assertEquals(homePage.checkCustomerInfoTextAbsence(), Buttons.REGISTER.getButtonName());
     }
 }
