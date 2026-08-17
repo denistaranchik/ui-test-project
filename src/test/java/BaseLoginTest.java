@@ -1,3 +1,4 @@
+import Constant.Errors;
 import Page.BasePage;
 import config.ConfigReader;
 import com.microsoft.playwright.Browser;
@@ -6,6 +7,7 @@ import com.microsoft.playwright.Playwright;
 import listeners.ScreenshotListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 
 @Listeners(ScreenshotListener.class)
@@ -32,5 +34,35 @@ public class BaseLoginTest {
         if (playwright != null) {
             playwright.close();
         }
+    }
+
+    @DataProvider(name = "RegistrationData")
+    public Object[][] registrationData() {
+        return new Object[][]{
+                {ConfigReader.getMaleGender(),
+                        ConfigReader.getFirstName(),
+                        ConfigReader.getLastName(),
+                        ConfigReader.getValidEmail()},
+
+                {ConfigReader.getFemaleGender(),
+                        ConfigReader.getFirstName(),
+                        ConfigReader.getLastName(),
+                        ConfigReader.getValidEmail()},
+        };
+    }
+
+    @DataProvider(name = "LoginData")
+    public Object[][] loginData() {
+        return new Object[][]{
+                {ConfigReader.getInvalidEmail(),
+                        ConfigReader.getValidPassword(),
+                        Errors.EMAIL_INPUT_ERROR
+                },
+
+                {ConfigReader.getValidEmail(),
+                        ConfigReader.getInvalidPassword(),
+                        Errors.LOGIN_ERROR_CREDENTIALS
+                },
+        };
     }
 }
