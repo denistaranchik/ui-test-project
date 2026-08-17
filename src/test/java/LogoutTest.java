@@ -1,12 +1,13 @@
-import Constant.Buttons;
-import Constant.Credentials;
 import Page.HomePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static Constant.Buttons.REGISTER;
 import static org.testng.Assert.assertEquals;
+import static config.ConfigReader.*;
 
-public class LogoutTest extends BaseLoginTest{
+
+public class LogoutTest extends BaseLoginTest {
 
     HomePage homePage;
 
@@ -16,14 +17,14 @@ public class LogoutTest extends BaseLoginTest{
     }
 
     @Test
-    public void successfulLogoutTest () {
+    public void successfulLogoutTest() {
 
         homePage.clickLoginButton()
-            .fillEmailInput(Credentials.VALID_EMAIL.getCredentials())
-            .fillPasswordInput(Credentials.VALID_PASSWORD.getCredentials())
-            .clickLoginButton()
-            .clickLogoutButton();
+                .fillEmailInput(getValidEmail())
+                .fillPasswordInput(getValidPassword())
+                .clickConfirmLoginButton()
+                .clickLogoutButton();
 
-        assertEquals(homePage.checkCustomerInfoTextAbsence(), Buttons.REGISTER.getButtonName());
+        assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName());
     }
 }
