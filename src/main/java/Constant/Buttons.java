@@ -8,9 +8,10 @@ public enum Buttons {
 
     private final String buttonName;
 
-    Buttons(String buttonName){
+    Buttons(String buttonName) {
         this.buttonName = buttonName;
     }
+
     public String getButtonName() {
         return buttonName;
     }
