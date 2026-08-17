@@ -6,12 +6,10 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    private static final Properties properties = new Properties();
+    public static final Properties properties = new Properties();
 
     static {
-        try (InputStream inputStream = ConfigReader.class
-                .getClassLoader()
-                .getResourceAsStream("config.properties")) {
+        try (InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties")) {
 
             if (inputStream == null) {
                 throw new RuntimeException("config.properties was not found in resources");
@@ -25,6 +23,38 @@ public class ConfigReader {
 
     public static String getBaseUrl() {
         return properties.getProperty("base.url");
+    }
+
+    public static String getFirstName() {
+        return properties.getProperty("firstName");
+    }
+
+    public static String getLastName() {
+        return properties.getProperty("lastName");
+    }
+
+    public static String getValidEmail() {
+        return properties.getProperty("validEmail");
+    }
+
+    public static String getInvalidEmail() {
+        return properties.getProperty("invalidEmail");
+    }
+
+    public static String getValidPassword() {
+        return properties.getProperty("validPassword");
+    }
+
+    public static String getInvalidPassword() {
+        return properties.getProperty("invalidPassword");
+    }
+
+    public static String getMaleGender() {
+        return properties.getProperty("maleGender");
+    }
+
+    public static String getFemaleGender() {
+        return properties.getProperty("femaleGender");
     }
 
     public static String getBrowser() {
