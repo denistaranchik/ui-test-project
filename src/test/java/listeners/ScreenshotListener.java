@@ -26,10 +26,7 @@ public class ScreenshotListener implements ITestListener {
         String fileName = result.getName() + "_" + timestamp + ".png";
         Path path = Paths.get(SCREENSHOT_DIR, fileName);
 
-        page.screenshot(new Page.ScreenshotOptions()
-                .setPath(path)
-                .setType(ScreenshotType.PNG)
-                .setFullPage(true));
+        page.screenshot(new Page.ScreenshotOptions().setPath(path).setType(ScreenshotType.PNG).setFullPage(true));
 
         System.out.println("Failure screenshot saved: " + path.toAbsolutePath());
     }
