@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("io.qameta.allure") version "4.1.0"
 }
 
 group = "ui-test"
@@ -19,6 +20,14 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:${commonsLangVersion}")
 }
 
+allure {
+    version.set("2.34.0")
+}
+
 tasks.test {
     useTestNG()
-    }
+}
+
+tasks.named<io.qameta.allure.gradle.report.tasks.AllureServe>("allureServe") {
+    dependsOnTests()
+}
