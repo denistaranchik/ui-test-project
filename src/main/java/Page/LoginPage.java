@@ -2,33 +2,27 @@ package Page;
 
 import com.microsoft.playwright.Locator;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
-    private final Locator emailInput = BasePage.page.locator("#Email");
-    private final Locator loginButton = BasePage.page.locator(".login-button");
-    private final Locator passwordInput = BasePage.page.locator("#Password");
+    private final Locator confirmLoginButton = BasePage.page.locator(".login-button");
     private final Locator failureLoginError = BasePage.page.locator(".validation-summary-errors");
     private final Locator errorEmailInput = BasePage.page.locator(".field-validation-error");
 
 
-    // Fill methods
-
-    public LoginPage fillEmailInput(String value) {
-         emailInput.fill(value);
-         return this;
-    }
-
-    public LoginPage fillPasswordInput(String value) {
-        passwordInput.fill(value);
+    public LoginPage fillEmailInput(String email) {
+        fillInput(emailInput, email);
         return this;
     }
 
-    public HomePage clickLoginButton() {
-        loginButton.click();
-        return new HomePage();
+    public LoginPage fillPasswordInput(String password) {
+        fillInput(passwordInput, password);
+        return this;
     }
 
-    // Assertions
+    public HomePage clickConfirmLoginButton() {
+        confirmLoginButton.click();
+        return new HomePage();
+    }
 
     public String getLoginError() {
         return failureLoginError.innerText();
