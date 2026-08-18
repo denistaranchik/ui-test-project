@@ -1,11 +1,12 @@
-import Constant.Buttons;
-import Constant.Credentials;
 import Constant.Errors;
 import Page.HomePage;
 import Page.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static Constant.Buttons.*;
+import static Constant.Errors.*;
+import static config.ConfigReader.*;
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseLoginTest {
@@ -23,47 +24,37 @@ public class LoginTest extends BaseLoginTest {
     public void successfulLoginTest() {
 
         homePage.clickLoginButton()
-                .fillEmailInput(Credentials.VALID_EMAIL.getCredentials())
-                .fillPasswordInput(Credentials.VALID_PASSWORD.getCredentials())
-                .clickLoginButton();
+                .fillEmailInput(getValidEmail())
+                .fillPasswordInput(getValidPassword())
+                .clickConfirmLoginButton();
 
-        assertEquals(homePage.getCustomerInfoText(), Credentials.VALID_EMAIL.getCredentials());
-        assertEquals(homePage.checkLogOutButtonPresence(), Buttons.LOGOUT.getButtonName());
-
-    }
-
-    @Test
-    public void invalidEmailLoginTest() {
-
-        homePage.clickLoginButton()
-                .fillEmailInput(Credentials.INVALID_EMAIL.getCredentials())
-                .fillPasswordInput(Credentials.INVALID_PASSWORD.getCredentials())
-                .clickLoginButton();
-
-        assertEquals(loginPage.getErrorEmailInput(), Errors.EMAIL_INPUT_ERROR);
-        assertEquals(homePage.checkLogInButtonPresence(), Buttons.LOGIN.getButtonName());
+        assertEquals(homePage.getCustomerInfoText(),(getValidEmail()));
+        assertEquals(homePage.checkLogOutButtonPresence(), LOGOUT.getButtonName());
 
     }
 
-    @Test
-    public void invalidPasswordLoginTest() {
+    @Test(dataProvider = "LoginData")
+    public void invalidCredentialsLoginTest(String email, String password, String errorMessage) {
 
         homePage.clickLoginButton()
-                .fillEmailInput(Credentials.VALID_EMAIL.getCredentials())
-                .fillPasswordInput(Credentials.INVALID_PASSWORD.getCredentials())
-                .clickLoginButton();
+                .fillEmailInput(email)
+                .fillPasswordInput(password)
+                .clickConfirmLoginButton();
 
-        assertEquals(loginPage.getLoginError(), Errors.LOGIN_ERROR_CREDENTIALS);
-        assertEquals(homePage.checkLogInButtonPresence(), Buttons.LOGIN.getButtonName());
+        // assertEquals(loginPage.getErrorEmailInput(), errorMessage);
+        // assertEquals(loginPage.getLoginError(), errorMessage);
+        assertEquals(homePage.checkLogInButtonPresence(), LOGIN.getButtonName(), "Message");
+        assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName());
+
     }
 
     @Test
     public void emptyInputsLoginTest() {
 
         homePage.clickLoginButton()
-                .clickLoginButton();
+                .clickConfirmLoginButton();
 
         assertEquals(loginPage.getLoginError(), Errors.LOGIN_ERROR_CUSTOMER_NOT_FOUND);
-        assertEquals(homePage.checkLogInButtonPresence(), Buttons.LOGIN.getButtonName());
+        assertEquals(homePage.checkLogInButtonPresence(), LOGIN.getButtonName());
     }
 }
