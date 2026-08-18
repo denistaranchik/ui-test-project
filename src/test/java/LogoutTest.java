@@ -25,6 +25,7 @@ public class LogoutTest extends BaseLoginTest {
                 .clickConfirmLoginButton()
                 .clickLogoutButton();
 
-        assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName());
+        assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName(), "Register button" +
+                " should be visible again after successful logout");
     }
 }

@@ -19,7 +19,7 @@ public class RegistrationTest extends BaseLoginTest {
     }
 
     @Test(dataProvider = "RegistrationData")
-    private void successfulRegistrationTest(String gender, String firstName, String lastName,
+    public void successfulRegistrationTest(String gender, String firstName, String lastName,
                                             String password) {
 
         String generatedRandomEmail = Helper.randomMailGenerator();
@@ -33,8 +33,10 @@ public class RegistrationTest extends BaseLoginTest {
                 .fillConfirmPasswordInput(password)
                 .clickConfirmRegistrationButton();
 
-        assertEquals(homePage.getCustomerInfoText(), generatedRandomEmail);
-        assertEquals(homePage.checkLogOutButtonPresence(), LOGOUT.getButtonName());
+        assertEquals(homePage.getCustomerInfoText(), generatedRandomEmail, "Customer email" +
+                " should be displayed in header after successful registration");
+        assertEquals(homePage.checkLogOutButtonPresence(), LOGOUT.getButtonName(), "Logout button" +
+                " should be visible after successful registration");
 
     }
 }

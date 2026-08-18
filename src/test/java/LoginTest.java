@@ -28,7 +28,7 @@ public class LoginTest extends BaseLoginTest {
                 .fillPasswordInput(getValidPassword())
                 .clickConfirmLoginButton();
 
-        assertEquals(homePage.getCustomerInfoText(),(getValidEmail()));
+        assertEquals(homePage.getCustomerInfoText(), (getValidEmail()));
         assertEquals(homePage.checkLogOutButtonPresence(), LOGOUT.getButtonName());
 
     }
@@ -43,8 +43,11 @@ public class LoginTest extends BaseLoginTest {
 
         // assertEquals(loginPage.getErrorEmailInput(), errorMessage);
         // assertEquals(loginPage.getLoginError(), errorMessage);
-        assertEquals(homePage.checkLogInButtonPresence(), LOGIN.getButtonName(), "Message");
-        assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName());
+        assertEquals(homePage.checkLogInButtonPresence(), LOGIN.getButtonName(), "Expect " +
+                "register button is still visible after failed login with empty inputs");
+
+        assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName(), "Expect " +
+                "register button is still visible after failed login with empty inputs");
 
     }
 
@@ -54,7 +57,9 @@ public class LoginTest extends BaseLoginTest {
         homePage.clickLoginButton()
                 .clickConfirmLoginButton();
 
-        assertEquals(loginPage.getLoginError(), Errors.LOGIN_ERROR_CUSTOMER_NOT_FOUND);
-        assertEquals(homePage.checkLogInButtonPresence(), LOGIN.getButtonName());
+        assertEquals(loginPage.getLoginError(), Errors.LOGIN_ERROR_CUSTOMER_NOT_FOUND, "Expect 'customer" +
+                " not found' error message");
+        assertEquals(homePage.checkLogInButtonPresence(), LOGIN.getButtonName(), "Expect " +
+                "login button is still visible after failed login with empty inputs");
     }
 }

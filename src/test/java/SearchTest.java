@@ -38,6 +38,6 @@ public class SearchTest extends BaseLoginTest {
                 .clickSearchButton();
 
         assertTrue(homePage.searchResultTitle().toLowerCase().contains("book"),
-                "Product title does not contain: 'book'");
+                "Product title should contain: 'book' but does not");
     }
 }
