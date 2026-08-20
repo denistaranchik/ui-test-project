@@ -54,14 +54,14 @@ public class BaseLoginTest {
     @DataProvider(name = "LoginData")
     public Object[][] loginData() {
         return new Object[][]{
-                {ConfigReader.getInvalidEmail(),
+                {ConfigReader.getNonExistEmail(),
                         ConfigReader.getValidPassword(),
-                        Errors.EMAIL_INPUT_ERROR
+                        Errors.LOGIN_ERROR_MESSAGE
                 },
 
                 {ConfigReader.getValidEmail(),
                         ConfigReader.getInvalidPassword(),
-                        Errors.LOGIN_ERROR_CREDENTIALS
+                        Errors.LOGIN_ERROR_MESSAGE
                 },
         };
     }

@@ -41,6 +41,10 @@ public class ConfigReader {
         return properties.getProperty("invalidEmail");
     }
 
+    public static String getNonExistEmail() {
+        return properties.getProperty("nonExistEmail");
+    }
+
     public static String getValidPassword() {
         return properties.getProperty("validPassword");
     }
