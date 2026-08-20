@@ -5,11 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static Constant.Buttons.*;
-import static Constant.Errors.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import static config.ConfigReader.*;
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseLoginTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
 
     HomePage homePage;
     LoginPage loginPage;
@@ -36,10 +39,14 @@ public class LoginTest extends BaseLoginTest {
     @Test(dataProvider = "LoginData")
     public void invalidCredentialsLoginTest(String email, String password, String errorMessage) {
 
+        logger.info("Attempt log into profile with email={}", email);
+
         homePage.clickLoginButton()
                 .fillEmailInput(email)
                 .fillPasswordInput(password)
                 .clickConfirmLoginButton();
+
+        logger.info("Login submitted, verifying error message");
 
         assertEquals(loginPage.getLoginError(), errorMessage, "Expect: 'Login was unsuccessful. " +
                 "Please correct the errors and try again.'");
@@ -49,6 +56,7 @@ public class LoginTest extends BaseLoginTest {
         assertEquals(homePage.checkRegistrationButtonPresence(), REGISTER.getButtonName(), "Expect " +
                 "register button is still visible after failed login with empty inputs");
 
+        logger.info("invalidCredentialsLoginTest passed for email={}", email);
     }
 
     @Test
