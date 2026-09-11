@@ -1,10 +1,10 @@
-import Utils.Helper;
+import utils.Helper;
 import Page.HomePage;
 import Page.RegistrationPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static Constant.Buttons.LOGOUT;
+import static constant.Buttons.LOGOUT;
 import static org.testng.Assert.assertEquals;
 
 public class RegistrationTest extends BaseLoginTest {

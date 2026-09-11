@@ -2,7 +2,7 @@ package Page;
 
 import com.microsoft.playwright.Locator;
 
-import static Utils.Waiter.waitUntilElementIsVisible;
+import static utils.Waiter.waitUntilElementIsVisible;
 
 
 public class HomePage extends BasePage {
