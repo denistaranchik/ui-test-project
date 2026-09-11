@@ -1,9 +1,9 @@
 import Page.HomePage;
+import facade.LoginFacade;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
-import static config.ConfigReader.*;
 
 
 public class SearchTest extends BaseLoginTest {
@@ -11,10 +11,12 @@ public class SearchTest extends BaseLoginTest {
     private final String VALID_SEARCH_INPUT = "Book";
 
     HomePage homePage;
+    LoginFacade loginFacade;
 
     @BeforeMethod
     public void initPages() {
         homePage = new HomePage();
+        loginFacade = new LoginFacade();
     }
 
     @Test
@@ -30,10 +32,7 @@ public class SearchTest extends BaseLoginTest {
     @Test
     public void successfulSearchByAuthorizedUserTest() {
 
-        homePage.clickLoginButton()
-                .fillEmailInput(getValidEmail())
-                .fillPasswordInput(getValidPassword())
-                .clickConfirmLoginButton()
+        HomePage homePage = loginFacade.login()
                 .fillSearchInput(VALID_SEARCH_INPUT)
                 .clickSearchButton();
 

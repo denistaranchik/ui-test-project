@@ -1,13 +1,15 @@
-import Constant.Errors;
+import constant.Errors;
 import Page.HomePage;
 import Page.LoginPage;
+import facade.LoginFacade;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static Constant.Buttons.*;
+import static config.ConfigReader.*;
+import static constant.Buttons.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static config.ConfigReader.*;
+
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseLoginTest {
@@ -26,10 +28,8 @@ public class LoginTest extends BaseLoginTest {
     @Test
     public void successfulLoginTest() {
 
-        homePage.clickLoginButton()
-                .fillEmailInput(getValidEmail())
-                .fillPasswordInput(getValidPassword())
-                .clickConfirmLoginButton();
+        LoginFacade loginFacade = new LoginFacade();
+        loginFacade.login();
 
         assertEquals(homePage.getCustomerInfoText(), (getValidEmail()));
         assertEquals(homePage.checkLogOutButtonPresence(), LOGOUT.getButtonName());
