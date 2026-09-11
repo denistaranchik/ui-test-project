@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.WaitForSelectorState;

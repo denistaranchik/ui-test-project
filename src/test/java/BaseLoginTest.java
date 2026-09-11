@@ -1,4 +1,4 @@
-import Constant.Errors;
+import constant.Errors;
 import Page.BasePage;
 import config.ConfigReader;
 import com.microsoft.playwright.Browser;

@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import Page.BasePage;
 import org.apache.commons.lang3.RandomStringUtils;
