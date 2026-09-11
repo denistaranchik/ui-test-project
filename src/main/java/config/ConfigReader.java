@@ -6,19 +6,31 @@ import java.util.Properties;
 
 public class ConfigReader {
 
+    private static final ConfigReader INSTANCE = new ConfigReader();
     public static final Properties properties = new Properties();
 
-    static {
-        try (InputStream inputStream = ConfigReader.class.getClassLoader().getResourceAsStream("config.properties")) {
+    private ConfigReader() {
+        try (InputStream inputStream = ConfigReader.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties")) {
 
             if (inputStream == null) {
-                throw new RuntimeException("config.properties was not found in resources");
+                throw new RuntimeException(
+                        "config.properties was not found in resources"
+                );
             }
+
             properties.load(inputStream);
 
         } catch (IOException e) {
-            throw new RuntimeException("Can not download config.properties", e);
+            throw new RuntimeException(
+                    "Cannot load config.properties", e
+            );
         }
+    }
+
+    public static ConfigReader getInstance() {
+        return INSTANCE;
     }
 
     public static String getBaseUrl() {
