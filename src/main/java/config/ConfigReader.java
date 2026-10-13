@@ -6,8 +6,9 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    private static final ConfigReader INSTANCE = new ConfigReader();
+
     public static final Properties properties = new Properties();
+    private static final ConfigReader INSTANCE = new ConfigReader();
 
     private ConfigReader() {
         try (InputStream inputStream = ConfigReader.class
