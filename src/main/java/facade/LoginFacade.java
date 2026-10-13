@@ -12,10 +12,9 @@ public class LoginFacade {
     }
 
     public HomePage login() {
-        homePage.clickLoginButton()
+        return homePage.clickLoginButton()
                 .fillEmailInput(getValidEmail())
                 .fillPasswordInput(getValidPassword())
                 .clickConfirmLoginButton();
     }
-
 }
