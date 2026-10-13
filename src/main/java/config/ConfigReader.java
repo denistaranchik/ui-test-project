@@ -30,9 +30,6 @@ public class ConfigReader {
         }
     }
 
-    public static ConfigReader getInstance() {
-        return INSTANCE;
-    }
 
     public static String getBaseUrl() {
         return properties.getProperty("base.url");
@@ -74,15 +71,9 @@ public class ConfigReader {
         return properties.getProperty("femaleGender");
     }
 
-    public static String getBrowser() {
-        return properties.getProperty("browser");
-    }
 
     public static boolean isHeadless() {
         return Boolean.parseBoolean(properties.getProperty("headless"));
     }
 
-    public static int getTimeout() {
-        return Integer.parseInt(properties.getProperty("timeout"));
-    }
 }
