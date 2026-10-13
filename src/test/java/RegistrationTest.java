@@ -10,12 +10,10 @@ import static org.testng.Assert.assertEquals;
 public class RegistrationTest extends BaseLoginTest {
 
     HomePage homePage;
-    RegistrationPage registrationPage;
 
     @BeforeMethod
     public void initPages() {
         homePage = new HomePage();
-        registrationPage = new RegistrationPage();
     }
 
     @Test(dataProvider = "RegistrationData")
