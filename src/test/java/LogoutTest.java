@@ -1,5 +1,4 @@
 import Page.HomePage;
-import Page.LoginPage;
 import facade.LoginFacade;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
